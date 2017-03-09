@@ -1,0 +1,42 @@
+---
+title: "Leaflet exercise"
+author: "Iori Guido"
+date: "9th March 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE)
+```
+
+```{r}
+library("knitr");
+library("leaflet");
+```
+
+## My holiday in Lanzarote
+
+In the map, you can find some places to go in Lanzarote that I visited last December.
+In the popup a link to the corresponding web site is provided.
+
+
+```{r}
+
+df <- data.frame(lat = c(29.160649, 28.998114, 28.953902, 29.022368, 28.858985 ),
+                 lng = c(-13.439211, -13.492963, -13.833552, -13.792993,-13.798635 ),
+                 #name = c("Cueva de Los Verdes", "Teguise market", "Los Hervideros", "Timanfaya National Park", "Playa Papagayo"),
+                 popup = c("<a href='http://www.turismolanzarote.com/en/centros-turisticos/cueva-de-los-verdes/1132'>Cueva de Los Verdes</a>",
+                           "<a href='http://www.teguise.com/mercadillo-in.html'>Teguise market</a>",
+                           "<a href='http://www.spain-lanzarote.com/en/places/south/los-hervideros.html'>Los Hervideros</a>", 
+                           "<a href='http://www.discoverlanzarote.com/timanfaya.asp'>Timanfaya National Park</a>", 
+                           "<a href='https://www.tripadvisor.com/Attraction_Review-g187477-d1542276-Reviews-Playa_de_Papagayo-Lanzarote_Canary_Islands.html'>Playa Papagayo</a>") 
+);
+                  
+
+                        
+df %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers( popup = df$popup )
+  
+```
